@@ -1,53 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="manifest" href="./manifest.json">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Clock & Weather</title>
-    <!-- Google Fonts: Orbitron for digital numbers, Montserrat for general text -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Clock Card -->
-        <div class="card clock-card">
-            <div id="time" class="time"></div>
-            <div id="date" class="date"></div>
-        </div>
+<!-- Before -->
+<div class="weather-message">
+    <p>Please allow location access to get local weather</p>
+</div>
 
-        <!-- Weather Card -->
-        <div class="card weather-card">
-            <!-- Loading and Error States -->
-            <div id="weather-loading" class="message active">Loading weather...</div>
-            <div id="weather-error" class="message error"></div>
+<!-- After: Remove the paragraph or the entire div -->
+<div class="weather-message">
+    <!-- Removed location access message -->
+</div>
 
-            <!-- Weather Data Display -->
-            <div id="weather-data" class="weather-data hidden">
-                <div class="location-name" id="location-name"></div>
-                <div class="weather-main-info">
-                    <img id="weather-icon" class="weather-icon" src="" alt="Weather icon">
-                    <div id="temperature" class="temperature"></div>
-                </div>
-                <div id="condition" class="condition"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main JavaScript -->
-    <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./sw.js')
-          .then(function (reg) { console.log('[PWA] SW registered:', reg.scope); })
-          .catch(function (err) { console.warn('[PWA] SW registration failed:', err); });
-      });
-    }
-  </script>
-</body>
-</html>
+<!-- Or completely remove the div if it's no longer needed -->
