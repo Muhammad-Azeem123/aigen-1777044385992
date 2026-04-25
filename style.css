@@ -1,0 +1,239 @@
+/* Variables for easier theme management */
+:root {
+    --bg-gradient-start: #1a1a2e;
+    --bg-gradient-mid: #16213e;
+    --bg-gradient-end: #0f3460;
+    --card-bg: rgba(25, 28, 41, 0.6); /* Slightly darker for glassmorphism */
+    --text-color: #e0e0e0;
+    --accent-color: #e94560; /* A vibrant red/pink */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.4); /* Slightly darker shadow for contrast */
+}
+
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; /* Modern, clean font */
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%); /* Gradient background */
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent scrollbar if not needed */
+    -webkit-font-smoothing: antialiased; /* Better font rendering */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    gap: 25px; /* Space between cards */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 90%; /* For responsiveness */
+    max-width: 600px; /* Max width for the entire container */
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 var(--shadow-color);
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 100%; /* Occupy full width within container */
+    max-width: 500px; /* Max width for individual cards */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 var(--shadow-color);
+}
+
+/* Clock styling */
+.clock-card .time {
+    font-family: 'Orbitron', sans-serif; /* Digital clock font */
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(233, 69, 96, 0.5); /* Subtle glow */
+    transition: all 0.5s ease-in-out; /* For smooth updates */
+}
+
+.clock-card .date {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-color);
+    transition: all 0.5s ease-in-out; /* For smooth updates */
+}
+
+/* Weather styling */
+.weather-card {
+    min-height: 200px; /* Ensure consistent height while loading */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-data.hidden {
+    display: none;
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+.weather-data {
+    opacity: 0; /* Start hidden for fade-in */
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    width: 100%; /* Ensure content fills card width */
+}
+
+.weather-data.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.weather-data .location-name {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    line-height: 1.2; /* Better line spacing for city names */
+}
+
+.weather-main-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.weather-icon {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* Subtle glow for icon */
+    transition: transform 0.3s ease-in-out;
+}
+
+.weather-icon:hover {
+    transform: scale(1.1);
+}
+
+.temperature {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.condition {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+/* Loading and Error messages */
+.message {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    text-align: center;
+    padding: 10px; /* Add padding for better readability */
+}
+
+.message.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message.error {
+    color: var(--accent-color); /* Error messages in accent color */
+    font-weight: 600;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .card {
+        padding: 25px;
+    }
+
+    .clock-card .time {
+        font-size: 3.8rem; /* Smaller for medium screens */
+    }
+
+    .clock-card .date {
+        font-size: 1.3rem;
+    }
+
+    .weather-data .location-name {
+        font-size: 1.8rem;
+    }
+
+    .weather-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .temperature {
+        font-size: 3rem;
+    }
+
+    .condition {
+        font-size: 1.6rem;
+    }
+
+    .message {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .clock-card .time {
+        font-size: 2.8rem; /* Even smaller for mobile */
+    }
+    .clock-card .date {
+        font-size: 1rem;
+    }
+    .weather-data .location-name {
+        font-size: 1.4rem;
+    }
+    .weather-icon {
+        width: 50px;
+        height: 50px;
+    }
+    .temperature {
+        font-size: 2.2rem;
+    }
+    .condition {
+        font-size: 1.2rem;
+    }
+    .message {
+        font-size: 0.95rem;
+    }
+}
